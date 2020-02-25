@@ -86,8 +86,9 @@
 </div>
 
 <script type="text/javascript">
-    function onBackKeyDown() {
-        alert('Backbutton key pressed');
+    function onDeviceReady() {
+        // Register the event listener
+        document.addEventListener("backbutton", onBackKeyDown, false);
     }
 	$('.toggle-title').click(function(){
 	    $(this).parent().find('.toggle-content').slideToggle(200); 
