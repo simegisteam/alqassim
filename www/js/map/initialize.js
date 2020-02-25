@@ -144,7 +144,8 @@ mapModule.controller('LoginCtrl', [ '$scope', '$http', '$rootScope', '$state', '
 					$rootScope.loginUserName =resultObj.userProfile.UserName;
 					$rootScope.userInfo = userprofile;
 					window.localStorage.setItem("USER_PROFILE", JSON.stringify(userprofile));
-					window.localStorage.setItem("GS_USER_LOGIN_STATUS", "true");
+                    window.localStorage.setItem("GS_USER_LOGIN_STATUS", "true");
+                    window.localStorage.setItem('firstTimer', "true");
 					$state.go('maplist', {});
 				} else {
 					$scope.inValidCredential = true;

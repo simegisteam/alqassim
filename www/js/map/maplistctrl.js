@@ -1,14 +1,18 @@
 mapModule.controller('MapListCtrl',['$scope','mapservice','$rootScope','$translate','$state','utilService', function ($scope,mapservice,$rootScope,$translate,$state,utilService) { 
-	$scope.mapList =  [];
+    $scope.mapList = [];
+    
+
 	$scope.init = function(){
 		$rootScope.loading = true;
 		mapservice.getMapList($rootScope.userInfo.token).then(function(result) {
 			if(result != null){
-				$scope.mapList = result.maps;
-				//if($scope.mapList!=null && $scope.mapList.length==1)
-				//{
-				//	$state.go("map",{"mapid":$scope.mapList[0].mapID});
-				//}
+                $scope.mapList = result.maps;
+                $scope.loginner = window.localStorage.getItem('firstTimer');
+                if ($scope.mapList != null && $scope.mapList.length == 1 && $scope.loginner == "true")
+                {
+                    window.localStorage.setItem('firstTimer', "false");
+					$state.go("map",{"mapid":$scope.mapList[0].mapID});
+				}
 			}
 			$rootScope.loading = false;
 		}, function ( response ) {
