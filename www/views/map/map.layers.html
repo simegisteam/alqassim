@@ -179,18 +179,18 @@
 						<div class="report-region">
 							<div class="report_text" ng-if="language == 'en-US'" ng-click="regionSelected(regions)"><h6>{{regions.Region_En}}</h6></div>
 							<div class="report_text" ng-if="language == 'ar-AE'" ng-click="regionSelected(regions)"><h6>{{regions.Region_Ar}}</h6></div>
-							<div class="report_icon">
-								<span class="report_i"><i class="fa fa-eye" ng-click="showRegionPdf(regions)"></i></span>
-								<!-- <span class="report_i"><i class="fa fa-download" ng-click="showPdf(regions)"></i></span> -->
-							</div>
+                            <div class="report_icon">
+                                <!-- <span class="report_i"><i class="fa fa-eye" ng-click="showRegionPdf(regions)"></i></span> -->
+                                <!-- <span class="report_i"><i class="fa fa-download" ng-click="showPdf(regions)"></i></span> -->
+                            </div>
 						</div>
 						<div class="report-area" ng-show="regions.isSelected" ng-repeat="areas in regions.lstOfAreas">
 							<div class="report_text" ng-if="language == 'en-US'"><h6>{{areas.NameEn}}</h6></div>
 							<div class="report_text" ng-if="language == 'ar-AE'"><h6>{{areas.NameAr}}</h6></div>
-							<div class="report_icon">
-								<span class="report_i"><i class="fa fa-eye" ng-click="showAreaPdf(regions)"></i></span>
-								<!-- <span class="report_i"><i class="fa fa-download" ng-click="showPdf(regions)"></i></span> -->
-							</div>
+                            <div class="report_icon">
+                                <!-- <span class="report_i"><i class="fa fa-eye" ng-click="showAreaPdf(regions)"></i></span> -->
+                                <!-- <span class="report_i"><i class="fa fa-download" ng-click="showPdf(regions)"></i></span> -->
+                            </div>
 						</div>
 					</div>
 				</div>
