@@ -85,25 +85,11 @@
 	</a> -->
 </div>
 
-<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 <script type="text/javascript">
-
-    
 
 	$('.toggle-title').click(function(){
 	    $(this).parent().find('.toggle-content').slideToggle(200); 
 	    $(this).find('i').toggleClass('rotate-toggle');
 	    return false;
     });
-
-    $(document).on("deviceready", onDeviceReady);
-    function onDeviceReady() {
-        $(document).on("pagecontainerload", onPageLoad);
-        $(document).on("backbutton", onBackButton);
-    }
-
-    function onBackButton(e) {
-        e.preventDefault();
-        navigator.app.exitApp();
-    }
 </script>
