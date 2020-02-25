@@ -26,29 +26,29 @@
 <div class="all-elements">
 	<div class="snap-drawers">
 		<div class="snap-drawer" ng-class="language == 'en-US' ? 'snap-drawer-left' : 'snap-drawer-right'" style="overflow-x: hidden;">
-			<div class="sidebar-header" style="height: 40px;">
-				<a ui-sref="maplist">
-					<i class="fa fa-2x" ng-class="language == 'en-US' ? 'fa-chevron-left' : 'fa-chevron-right'"></i>
-				</a>
-				<a ui-sref="maplist">
-					<i class="fa fa-2x fa-home"></i>
-				</a>
-				<!-- <a ng-click="onClickStatChangeCustom('layers')">
-					<i class="fa fa-2x fa-globe"></i>
-				</a>
-				<a ng-click="onClickStatChangeCustom('search')">
-					<i class="fa  fa-2x fa-search"></i>
-				</a> -->
-				<!-- <a ui-sref="map.bookmark" style="margin-top:8px;">
-					<i class="fa  fa-2x fa-map-marker"></i>
-				</a>
-				<a ui-sref="map.mail" style="margin-top:8px;">
-					<i class="fa  fa-2x fa-envelope-o"></i>
-				</a> -->
-				<!-- <a class="close-sidebar" ui-sref="map.search" style="margin-top:8px;">
-					<i class="fa  fa-2x fa-search"></i>
-				</a> -->
-			</div>
+            <div class="sidebar-header" style="height: 40px;">
+                <a ui-sref="maplist">
+                    <i class="fa fa-2x" ng-class="language == 'en-US' ? 'fa-chevron-left' : 'fa-chevron-right'"></i>
+                </a>
+                <!-- <a ui-sref="maplist">
+                        <i class="fa fa-2x fa-home"></i>
+                    </a>-->
+                <!-- <a ng-click="onClickStatChangeCustom('layers')">
+                    <i class="fa fa-2x fa-globe"></i>
+                </a>
+                <a ng-click="onClickStatChangeCustom('search')">
+                    <i class="fa  fa-2x fa-search"></i>
+                </a> -->
+                    <!-- <a ui-sref="map.bookmark" style="margin-top:8px;">
+                    <i class="fa  fa-2x fa-map-marker"></i>
+                </a>
+                <a ui-sref="map.mail" style="margin-top:8px;">
+                    <i class="fa  fa-2x fa-envelope-o"></i>
+                </a> -->
+                            <!-- <a class="close-sidebar" ui-sref="map.search" style="margin-top:8px;">
+                    <i class="fa  fa-2x fa-search"></i>
+                </a> -->
+            </div>
 			<div ui-view style="position: absolute;top: 40px;bottom: 0px;left: 0px;right: 0px;"></div>
 		</div>
 		<!--Right Sidebar -->
