@@ -86,6 +86,9 @@
 </div>
 
 <script type="text/javascript">
+    function onBackKeyDown() {
+        alert('Backbutton key pressed');
+    }
 	$('.toggle-title').click(function(){
 	    $(this).parent().find('.toggle-content').slideToggle(200); 
 	    $(this).find('i').toggleClass('rotate-toggle');
