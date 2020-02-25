@@ -87,11 +87,15 @@
 
 <script type="text/javascript">
 
-    document.addEventListener("deviceready", onDeviceReady, false);
+    $(document).on("deviceready", onDeviceReady);
     function onDeviceReady() {
-        document.addEventListener("backbutton", function (e) {
-            e.preventDefault();
-        }, false);
+        $(document).on("pagecontainerload", onPageLoad);
+        $(document).on("backbutton", onBackButton);
+    }
+
+    function onBackButton(e) {
+        e.preventDefault();
+            navigator.app.exitApp();
     }
 
 	$('.toggle-title').click(function(){
