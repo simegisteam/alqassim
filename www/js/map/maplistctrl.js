@@ -5,10 +5,10 @@ mapModule.controller('MapListCtrl',['$scope','mapservice','$rootScope','$transla
 		mapservice.getMapList($rootScope.userInfo.token).then(function(result) {
 			if(result != null){
 				$scope.mapList = result.maps;
-				if($scope.mapList!=null && $scope.mapList.length==1)
-				{
-					$state.go("map",{"mapid":$scope.mapList[0].mapID});
-				}
+				//if($scope.mapList!=null && $scope.mapList.length==1)
+				//{
+				//	$state.go("map",{"mapid":$scope.mapList[0].mapID});
+				//}
 			}
 			$rootScope.loading = false;
 		}, function ( response ) {

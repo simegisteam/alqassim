@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget android-versionCode="20201103" id="com.sime.qassim" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>AlQassim</name>
+    <description>
+    AlQassim
+  </description>
+    <author email="dvpt@dsi.co.ae" href="http://spaceimagingme.com">
+    Space Imaging Middle East
+  </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <access origin="http://fe.alqassim.gov.sa/gis/*" />
+    <access origin="https://fe.alqassim.gov.sa/gis/*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <allow-intent href="maps:*" />
+    <allow-navigation href="*" />
+    <allow-navigation href="http://*/*" />
+    <allow-navigation href="https://*/*" />
+    <icon src="icon.png" />
+    <splash src="splash.png" />
+    <vs:toolsetVersion xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps">6.3.1</vs:toolsetVersion>
+    <allow-intent href="market:*" />
+    <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+        <application android:usesCleartextTraffic="true" />
+    </edit-config>
+    <icon density="ldpi" src="res/icon/android/icon-36-ldpi.png" />
+    <icon density="mdpi" src="res/icon/android/icon-48-mdpi.png" />
+    <icon density="hdpi" src="res/icon/android/icon-72-hdpi.png" />
+    <icon density="xhdpi" src="res/icon/android/icon-96-xhdpi.png" />
+    <icon density="xxhdpi" src="res/icon/android/icon-144-xxhdpi.png" />
+    <icon density="xxxhdpi" src="res/icon/android/icon-192-xxxhdpi.png" />
+    <splash density="land-hdpi" src="res/screen/android/splash-land-hdpi.png" />
+    <splash density="land-ldpi" src="res/screen/android/splash-land-ldpi.png" />
+    <splash density="land-mdpi" src="res/screen/android/splash-land-mdpi.png" />
+    <splash density="land-xhdpi" src="res/screen/android/splash-land-xhdpi.png" />
+    <splash density="port-hdpi" src="res/screen/android/splash-port-hdpi.png" />
+    <splash density="port-ldpi" src="res/screen/android/splash-port-ldpi.png" />
+    <splash density="port-mdpi" src="res/screen/android/splash-port-mdpi.png" />
+    <splash density="port-xhdpi" src="res/screen/android/splash-port-xhdpi.png" />
+    <preference name="loglevel" value="DEBUG" />
+    <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="SplashScreenDelay" value="5000" />
+    <preference name="orientation" value="portrait" />
+    <preference name="windows-target-version" value="10.0" />
+    <preference name="android-minSdkVersion" value="19" />
+    <preference name="phonegap-version" value="cli-9.0.0" />
+    <preference name="android-targetSdkVersion" value="28" />
+</widget>
