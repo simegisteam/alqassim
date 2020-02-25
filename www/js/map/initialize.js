@@ -110,7 +110,7 @@ mapModule.controller('LoginCtrl', [ '$scope', '$http', '$rootScope', '$state', '
 		});
 
 		// window.localStorage.clear();
-		$scope.loginStatus = window.localStorage.getItem("GS_USER_LOGIN_STATUS");
+        $scope.loginStatus = window.localStorage.getItem("GS_USER_LOGIN_STATUS");
 		if($scope.loginStatus != undefined && $scope.loginStatus != null && $scope.loginStatus == "true") {
 			var userProfile = JSON.parse(window.localStorage.getItem("USER_PROFILE"));
 			$scope.login = {username: "", password: ""};

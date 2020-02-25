@@ -87,21 +87,12 @@
 
 <script type="text/javascript">
 
-    $(document).on('page:beforeinit', function (e) {
-        if ($.fn.hyellaIMenu.mainView.history && $.fn.hyellaIMenu.mainView.history.length > 1) {
-            document.addEventListener("backbutton", disableBackButton, false);
-        }
-    });
-
-    function disableBackButton(e) {
-        if ($.fn.hyellaIMenu.mainView.history && $.fn.hyellaIMenu.mainView.history.length < 3) {
-            document.removeEventListener("backbutton", disableBackButton);
-        }
-
-        if ($.fn.hyellaIMenu.mainView.history && $.fn.hyellaIMenu.mainView.history.length > 1) {
-            $.fn.hyellaIMenu.mainView.router.back();
-        }
-    };
+    document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+        document.addEventListener("backbutton", function (e) {
+            e.preventDefault();
+        }, false);
+    }
 
 	$('.toggle-title').click(function(){
 	    $(this).parent().find('.toggle-content').slideToggle(200); 
