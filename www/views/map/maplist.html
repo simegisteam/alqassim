@@ -86,9 +86,16 @@
 </div>
 
 <script type="text/javascript">
+    function onLoad() {
+        document.addEventListener("deviceready", onDeviceReady, false);
+    }
+    
     function onDeviceReady() {
-        // Register the event listener
         document.addEventListener("backbutton", onBackKeyDown, false);
+    }
+
+    function onBackKeyDown() {
+        return false;
     }
 	$('.toggle-title').click(function(){
 	    $(this).parent().find('.toggle-content').slideToggle(200); 
