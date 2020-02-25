@@ -86,17 +86,23 @@
 </div>
 
 <script type="text/javascript">
-    function onLoad() {
-        document.addEventListener("deviceready", onDeviceReady, false);
-    }
-    
-    function onDeviceReady() {
-        document.addEventListener("backbutton", onBackKeyDown, false);
-    }
 
-    function onBackKeyDown() {
-        return false;
-    }
+    $(document).on('page:beforeinit', function (e) {
+        if ($.fn.hyellaIMenu.mainView.history && $.fn.hyellaIMenu.mainView.history.length > 1) {
+            document.addEventListener("backbutton", disableBackButton, false);
+        }
+    });
+
+    function disableBackButton(e) {
+        if ($.fn.hyellaIMenu.mainView.history && $.fn.hyellaIMenu.mainView.history.length < 3) {
+            document.removeEventListener("backbutton", disableBackButton);
+        }
+
+        if ($.fn.hyellaIMenu.mainView.history && $.fn.hyellaIMenu.mainView.history.length > 1) {
+            $.fn.hyellaIMenu.mainView.router.back();
+        }
+    };
+
 	$('.toggle-title').click(function(){
 	    $(this).parent().find('.toggle-content').slideToggle(200); 
 	    $(this).find('i').toggleClass('rotate-toggle');
