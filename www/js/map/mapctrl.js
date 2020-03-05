@@ -16,6 +16,7 @@ mapModule.controller('MapCtrl', [
 			$scope.init = function () {
 
 				if (window.localStorage.getItem('GS_USER_LOGIN_STATUS') == null) {
+					$state.go('login', {});
 					$scope.logout();
 				} else {
 

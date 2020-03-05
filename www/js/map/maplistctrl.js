@@ -14,7 +14,7 @@ mapModule.controller('MapListCtrl',['$scope','mapservice','$rootScope','$transla
                 {
 					window.localStorage.setItem('firstTimer', "false");
 					if (window.localStorage.getItem('GS_USER_LOGIN_STATUS') == null) {
-						$scope.logout();
+						$state.go('login', {});
 					} else {
 						$state.go("map", { "mapid": $scope.mapList[0].mapID });
 					}

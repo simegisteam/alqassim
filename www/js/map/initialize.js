@@ -226,11 +226,10 @@ mapModule.controller('LoginCtrl', [ '$scope', '$http', '$rootScope', '$state', '
 
 mapModule.controller('IntializeCtrl', function($scope, $rootScope, utilService, $cordovaNetwork, $translate, $state) {
 	$scope.init = function () {
-
 		if (window.localStorage.getItem('GS_USER_LOGIN_STATUS') == null) {
+			utilService.logout();
 			$state.go('login', {});
 		} else {
-
 
 			$rootScope.loading = false;
 			$rootScope.toc_map = null;
