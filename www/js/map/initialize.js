@@ -220,136 +220,143 @@ mapModule.controller('LoginCtrl', [ '$scope', '$http', '$rootScope', '$state', '
 			$scope.updateUI("ar-AE");
 		} else {
 			$scope.updateUI("en-US");
-		}
+	
 	};
 } ]);
 
 mapModule.controller('IntializeCtrl', function($scope, $rootScope, utilService, $cordovaNetwork, $translate, $state) {
-	$scope.init = function() {
-		$rootScope.loading = false;
-		$rootScope.toc_map = null;
-		$rootScope.mapObj = null;
-		$rootScope.toc_layers = [];
-		$rootScope.layerCategory = 'layer';
-		$rootScope.L_layers = [];
-		$rootScope.unchecked_layerids = [];
-		//$rootScope.baseUrl = "http://access.spaceimagingme.com:6092/qassimv4/";
-		$rootScope.baseUrl = "https://fe.alqassim.gov.sa/gis/";
-		$rootScope.refreshToken = null;
-		$scope.mapBookmark = {selectedBookmark: {}};		
-		$rootScope.isSessionTimeout = false;
+	$scope.init = function () {
 
-		$rootScope.addCSS = function(href) {
-			var cssLink = $("<link>");
-			$("head").append(cssLink);
-			cssLink.attr({
-				rel:  "stylesheet",
-				type: "text/css",
-				href: href
-			});
-		};
+		if (window.localStorage.getItem('GS_USER_LOGIN_STATUS') == null) {
+			$state.go('login', {});
+		} else {
 
-		$rootScope.removeCSS = function(href) {
-			$('head').find('link[href^="' + href + '"]').remove();
-		};
 
-		$rootScope.addJS = function(src) {
-			var jsLink = $("<script>");
-			$("head").append(jsLink);
-			jsLink.attr({
-				type: "text/javascript",
-				src: src
-			});
-		};
+			$rootScope.loading = false;
+			$rootScope.toc_map = null;
+			$rootScope.mapObj = null;
+			$rootScope.toc_layers = [];
+			$rootScope.layerCategory = 'layer';
+			$rootScope.L_layers = [];
+			$rootScope.unchecked_layerids = [];
+			//$rootScope.baseUrl = "http://access.spaceimagingme.com:6092/qassimv4/";
+			$rootScope.baseUrl = "https://fe.alqassim.gov.sa/gis/";
+			$rootScope.refreshToken = null;
+			$scope.mapBookmark = { selectedBookmark: {} };
+			$rootScope.isSessionTimeout = false;
 
-		$rootScope.removeJS = function(src) {
-			$('head').find('script[src^="' + src + '"]').remove();
-		};
+			$rootScope.addCSS = function (href) {
+				var cssLink = $("<link>");
+				$("head").append(cssLink);
+				cssLink.attr({
+					rel: "stylesheet",
+					type: "text/css",
+					href: href
+				});
+			};
 
-		$rootScope.sessionTimeoutAlert = function() {
-			if($rootScope.isSessionTimeout == false && $state.current.name != "login") {
-				$rootScope.isSessionTimeout = true;
-				$translate('MAP.SESSION_TIMEOUT').then(function (alert101) {
-					$translate('MAP.OK').then(function (alert102) {
-						lnv.alert({
-							content: alert101,
-							alertBtnText: alert102,
-							alertHandler: function() {
-								$rootScope.isSessionTimeout = false;
-								utilService.logout();
-							}
+			$rootScope.removeCSS = function (href) {
+				$('head').find('link[href^="' + href + '"]').remove();
+			};
+
+			$rootScope.addJS = function (src) {
+				var jsLink = $("<script>");
+				$("head").append(jsLink);
+				jsLink.attr({
+					type: "text/javascript",
+					src: src
+				});
+			};
+
+			$rootScope.removeJS = function (src) {
+				$('head').find('script[src^="' + src + '"]').remove();
+			};
+
+			$rootScope.sessionTimeoutAlert = function () {
+				if ($rootScope.isSessionTimeout == false && $state.current.name != "login") {
+					$rootScope.isSessionTimeout = true;
+					$translate('MAP.SESSION_TIMEOUT').then(function (alert101) {
+						$translate('MAP.OK').then(function (alert102) {
+							lnv.alert({
+								content: alert101,
+								alertBtnText: alert102,
+								alertHandler: function () {
+									$rootScope.isSessionTimeout = false;
+									utilService.logout();
+								}
+							});
+						});
+					});
+				}
+			};
+
+			utilService.changeLocaleTo("en-US");
+
+			document.addEventListener("deviceready", function () {
+				// Check internet connection
+				var type = $cordovaNetwork.getNetwork()
+				var isOnline = $cordovaNetwork.isOnline()
+				var isOffline = $cordovaNetwork.isOffline()
+				// listen for Online event
+				$rootScope.$on('$cordovaNetwork:online', function (event, networkState) {
+					var onlineState = networkState;
+					$translate('MAP.INTERNET_CONNECTION_ONLINE').then(function (alert101) {
+						$.toast({
+							text: alert101,
+							textAlign: 'center',
+							position: 'bottom-center',
+							showHideTransition: 'slide',
+							allowToastClose: false
 						});
 					});
 				});
-			}
-		};
-
-		utilService.changeLocaleTo("en-US");
-		
-		document.addEventListener("deviceready", function () {
-			// Check internet connection
-			var type = $cordovaNetwork.getNetwork()
-			var isOnline = $cordovaNetwork.isOnline()
-			var isOffline = $cordovaNetwork.isOffline()
-			// listen for Online event
-			$rootScope.$on('$cordovaNetwork:online', function(event, networkState){
-			  var onlineState = networkState;
-				$translate('MAP.INTERNET_CONNECTION_ONLINE').then(function (alert101) {
-					$.toast({
-						text: alert101,
-						textAlign : 'center',
-						position : 'bottom-center',
-						showHideTransition : 'slide',
-						allowToastClose : false
+				// listen for Offline event
+				$rootScope.$on('$cordovaNetwork:offline', function (event, networkState) {
+					var offlineState = networkState;
+					$translate('MAP.INTERNET_CONNECTION_OFFLINE').then(function (alert101) {
+						$.toast({
+							text: alert101,
+							textAlign: 'center',
+							position: 'bottom-center',
+							showHideTransition: 'slide',
+							allowToastClose: false
+						});
 					});
 				});
-			});
-			// listen for Offline event
-			$rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
-			  var offlineState = networkState;
-			  $translate('MAP.INTERNET_CONNECTION_OFFLINE').then(function (alert101) {
-					$.toast({
-						text: alert101,
-						textAlign : 'center',
-						position : 'bottom-center',
-						showHideTransition : 'slide',
-						allowToastClose : false
+
+				if (device.platform != 'browser') {
+					//Firebase
+					window.FirebasePlugin.hasPermission(function (data) {
+						console.log("firebase permissions enabled: " + data.isEnabled);
+						if (!data.isEnabled) {
+							window.FirebasePlugin.grantPermission();
+						}
 					});
-				});
-			});
-			
-			if(device.platform != 'browser') {
-				//Firebase
-				window.FirebasePlugin.hasPermission(function(data){
-					console.log("firebase permissions enabled: " + data.isEnabled);
-					if(!data.isEnabled) {
-						window.FirebasePlugin.grantPermission();
-					}
-				});
 
-				window.FirebasePlugin.getToken(function(token) {
-					// save this server-side and use it to push notifications to this device
-					$rootScope.refreshToken = token;
-					console.log("token: " + token);
-				}, function(error) {
-					console.error("token error: " + error);
-				});
+					window.FirebasePlugin.getToken(function (token) {
+						// save this server-side and use it to push notifications to this device
+						$rootScope.refreshToken = token;
+						console.log("token: " + token);
+					}, function (error) {
+						console.error("token error: " + error);
+					});
 
-				window.FirebasePlugin.onTokenRefresh(function(token) {
-					// save this server-side and use it to push notifications to this device
-					$rootScope.refreshToken = token;
-					console.log("refresh token: " + token);
-				}, function(error) {
-					console.error("refresh token error: " + error);
-				});
+					window.FirebasePlugin.onTokenRefresh(function (token) {
+						// save this server-side and use it to push notifications to this device
+						$rootScope.refreshToken = token;
+						console.log("refresh token: " + token);
+					}, function (error) {
+						console.error("refresh token error: " + error);
+					});
 
-				window.FirebasePlugin.onNotificationOpen(function(notification) {
+					window.FirebasePlugin.onNotificationOpen(function (notification) {
 						console.log("notification received: " + notification);
-				}, function(error) {
+					}, function (error) {
 						console.error("notification received error: " + error);
-				});
-			}
-		}, false);
+					});
+				}
+			}, false);
+		}
 	};
 });
 
