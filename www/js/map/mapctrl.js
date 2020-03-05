@@ -1054,7 +1054,8 @@ mapModule.controller('MapCtrl', [
 				jQuery('#liSliderOpen').hide();
 			};
 
-			$scope.logout = function() {
+			$scope.logout = function () {
+				window.localStorage.setItem("logoutChecker", false)
 				utilService.logout()
 			};
 

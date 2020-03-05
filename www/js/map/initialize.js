@@ -89,7 +89,8 @@ mapModule.config([ '$stateProvider', '$urlRouterProvider', '$translateProvider',
 
 mapModule.controller('LoginCtrl', [ '$scope', '$http', '$rootScope', '$state', '$timeout', '$translate', 'mapservice', 'utilService', function($scope, $http, $rootScope, $state, $timeout, $translate, mapservice, utilService) {
 
-	$scope.init = function() {
+	$scope.init = function () {
+		window.localStorage.setItem("logoutChecker", true);
 		$scope.inValidCredential = false;
 		$scope.warningMsg = "";
 		$rootScope.loginUserName = "";
@@ -112,8 +113,9 @@ mapModule.controller('LoginCtrl', [ '$scope', '$http', '$rootScope', '$state', '
 
 		// window.localStorage.clear();
 		//$scope.loginStatus = window.localStorage.getItem("logoutChecker");
-		
-		if ($scope.loginStatus != undefined && $scope.loginStatus != null) {
+
+		$scope.test = window.localStorage.getItem("logoutChecker");
+		if ($scope.loginStatus != undefined && $scope.loginStatus != null && $scope.test == true) {
 			
 			var userProfile = JSON.parse(window.localStorage.getItem("USER_PROFILE"));
 			window.localStorage.setItem("logoutChecker", true)
@@ -227,7 +229,7 @@ mapModule.controller('LoginCtrl', [ '$scope', '$http', '$rootScope', '$state', '
 
 mapModule.controller('IntializeCtrl', function($scope, $rootScope, utilService, $cordovaNetwork, $translate, $state) {
 	$scope.init = function () {
-		alert(window.localStorage.getItem("logoutChecker"))
+		alert(window.localStorage.Item("logoutChecker"))
 		$rootScope.loading = false;
 		$rootScope.toc_map = null;
 		$rootScope.mapObj = null;
