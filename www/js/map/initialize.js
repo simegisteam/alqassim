@@ -111,11 +111,12 @@ mapModule.controller('LoginCtrl', [ '$scope', '$http', '$rootScope', '$state', '
 		});
 
 		// window.localStorage.clear();
-		$scope.loginStatus = window.localStorage.getItem("logoutChecker");
+		//$scope.loginStatus = window.localStorage.getItem("logoutChecker");
 		
-		if ($scope.loginStatus != undefined && $scope.loginStatus != null && $scope.loginStatus == "true") {
+		if ($scope.loginStatus != undefined && $scope.loginStatus != null) {
 			
 			var userProfile = JSON.parse(window.localStorage.getItem("USER_PROFILE"));
+			window.localStorage.setItem("logoutChecker", "true")
 			$scope.login = {username: "", password: ""};
 			$scope.login.username = userProfile.username;
 			$scope.login.password = userProfile.password;
