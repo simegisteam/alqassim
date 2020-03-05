@@ -116,7 +116,7 @@ mapModule.controller('LoginCtrl', [ '$scope', '$http', '$rootScope', '$state', '
 		if ($scope.loginStatus != undefined && $scope.loginStatus != null) {
 			
 			var userProfile = JSON.parse(window.localStorage.getItem("USER_PROFILE"));
-			window.localStorage.setItem("logoutChecker", "true")
+			window.localStorage.setItem("logoutChecker", true)
 			$scope.login = {username: "", password: ""};
 			$scope.login.username = userProfile.username;
 			$scope.login.password = userProfile.password;
@@ -356,7 +356,7 @@ mapModule.controller('IntializeCtrl', function($scope, $rootScope, utilService, 
 
 mapModule.service('utilService', function($state, $rootScope, $translate) {
 	this.logout = function() {
-		window.localStorage.setItem("logoutChecker", "false");
+		window.localStorage.setItem("logoutChecker", false);
 		$state.go('login', {});
 
 	};
