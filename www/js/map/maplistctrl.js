@@ -4,6 +4,7 @@ mapModule.controller('MapListCtrl',['$scope','mapservice','$rootScope','$transla
 
 	$scope.init = function () {
 		
+		console.log(window.localStorage.getItem("logoutChecker"));
 
 		$rootScope.loading = true;
 		mapservice.getMapList($rootScope.userInfo.token).then(function(result) {

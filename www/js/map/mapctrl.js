@@ -15,6 +15,8 @@ mapModule.controller('MapCtrl', [
 			
 			$scope.init = function () {
 
+				console.log(window.localStorage.getItem("logoutChecker"));
+
 				if (window.localStorage.getItem('logoutChecker') == "false") {
 					$state.go('login', {});
 					$scope.logout();
