@@ -2,17 +2,19 @@ mapModule.controller('MapListCtrl',['$scope','mapservice','$rootScope','$transla
     $scope.mapList = [];
     
 
-	$scope.init = function(){
+	$scope.init = function () {
+		if ()
 		$rootScope.loading = true;
 		mapservice.getMapList($rootScope.userInfo.token).then(function(result) {
 			if(result != null){
                 $scope.mapList = result.maps;
                 $scope.loginner = window.localStorage.getItem('firstTimer');
+
                 if ($scope.mapList != null && $scope.mapList.length == 1 && $scope.loginner == "true")
                 {
 					window.localStorage.setItem('firstTimer', "false");
 					if (window.localStorage.getItem('GS_USER_LOGIN_STATUS') == null) {
-						return false;
+						$scope.logout();
 					} else {
 						$state.go("map", { "mapid": $scope.mapList[0].mapID });
 					}

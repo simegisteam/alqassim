@@ -13,28 +13,34 @@ mapModule.controller('MapCtrl', [
 		'utilService',
 		function($scope, $rootScope, mapservice, bookmarkservice, userservice, $filter, $stateParams, $state, $window, $translate,$timeout, utilService) {
 			
-			$scope.init = function() {
-				$rootScope.mapID = null;
-				$scope.VisibleLayerAfterReOrder = [];
-				$rootScope.layercontrol = null;
-				$scope.isScaleShow = true;
-				$rootScope.loadingComplete = false;
-				$scope.mapBookmarkRightSideBarDisplayView = "NONE";
-				$rootScope.boolLeftDivState="layers";
-				$scope.selectedMonthLocal;
-				$scope.selectedYearLocal;
-				$scope.simplesearchval;
-				$scope.locationMarker = null;
-				$scope.isGoogleTafficLayerEnabled = null;
-				$scope.googleTrafficLayer = null;
-				$scope.isEnablePoiLayerAsOverlay = false;
-				$scope.hasGoogleHybridLayer = false;
-			
-				$rootScope.mapID = $stateParams.mapid;
-				
-				$scope.updateUI($rootScope.language);
-				
-				$state.go('map.layers');
+			$scope.init = function () {
+
+				if (window.localStorage.getItem('GS_USER_LOGIN_STATUS') == null) {
+					$scope.logout();
+				} else {
+
+					$rootScope.mapID = null;
+					$scope.VisibleLayerAfterReOrder = [];
+					$rootScope.layercontrol = null;
+					$scope.isScaleShow = true;
+					$rootScope.loadingComplete = false;
+					$scope.mapBookmarkRightSideBarDisplayView = "NONE";
+					$rootScope.boolLeftDivState = "layers";
+					$scope.selectedMonthLocal;
+					$scope.selectedYearLocal;
+					$scope.simplesearchval;
+					$scope.locationMarker = null;
+					$scope.isGoogleTafficLayerEnabled = null;
+					$scope.googleTrafficLayer = null;
+					$scope.isEnablePoiLayerAsOverlay = false;
+					$scope.hasGoogleHybridLayer = false;
+
+					$rootScope.mapID = $stateParams.mapid;
+
+					$scope.updateUI($rootScope.language);
+
+					$state.go('map.layers');
+				}
 			};
 			
 			$scope.$on('$viewContentLoaded', function(event) {
