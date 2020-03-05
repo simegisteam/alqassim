@@ -110,8 +110,10 @@ mapModule.controller('LoginCtrl', [ '$scope', '$http', '$rootScope', '$state', '
 		});
 
 		// window.localStorage.clear();
-        $scope.loginStatus = window.localStorage.getItem("GS_USER_LOGIN_STATUS");
-		if($scope.loginStatus != undefined && $scope.loginStatus != null && $scope.loginStatus == "true") {
+		$scope.loginStatus = window.localStorage.getItem("GS_USER_LOGIN_STATUS");
+		alert("before");
+		if ($scope.loginStatus != undefined && $scope.loginStatus != null && $scope.loginStatus == "true") {
+			alert("after");
 			var userProfile = JSON.parse(window.localStorage.getItem("USER_PROFILE"));
 			$scope.login = {username: "", password: ""};
 			$scope.login.username = userProfile.username;
@@ -352,9 +354,9 @@ mapModule.controller('IntializeCtrl', function($scope, $rootScope, utilService, 
 
 mapModule.service('utilService', function($state, $rootScope, $translate) {
 	this.logout = function() {
-		window.localStorage.setItem("GS_USER_LOGIN_STATUS", "false");
-		window.localStorage.setItem("USER_PROFILE", null);
+		window.localStorage.setItem("GS_USER_LOGIN_STATUS", null);
 		$state.go('login', {});
+
 	};
 
 	this.changeLocaleTo = function(locale) {
