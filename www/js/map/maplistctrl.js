@@ -3,7 +3,7 @@ mapModule.controller('MapListCtrl',['$scope','mapservice','$rootScope','$transla
     
 
 	$scope.init = function () {
-		if ()
+		
 		$rootScope.loading = true;
 		mapservice.getMapList($rootScope.userInfo.token).then(function(result) {
 			if(result != null){
