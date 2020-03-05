@@ -14,7 +14,7 @@ mapModule.controller('MapListCtrl',['$scope','mapservice','$rootScope','$transla
                 if ($scope.mapList != null && $scope.mapList.length == 1 && $scope.loginner == "true")
                 {
 					window.localStorage.setItem('firstTimer', "false");
-					if (window.localStorage.getItem('logoutChecker') == "false") {
+					if (window.localStorage.getItem('logoutChecker') == "true") {
 						$state.go('login', {});
 					} else {
 						$state.go("map", { "mapid": $scope.mapList[0].mapID });
