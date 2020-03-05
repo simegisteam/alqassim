@@ -220,7 +220,7 @@ mapModule.controller('LoginCtrl', [ '$scope', '$http', '$rootScope', '$state', '
 			$scope.updateUI("ar-AE");
 		} else {
 			$scope.updateUI("en-US");
-	
+		}
 	};
 } ]);
 
