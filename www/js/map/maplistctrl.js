@@ -10,8 +10,13 @@ mapModule.controller('MapListCtrl',['$scope','mapservice','$rootScope','$transla
                 $scope.loginner = window.localStorage.getItem('firstTimer');
                 if ($scope.mapList != null && $scope.mapList.length == 1 && $scope.loginner == "true")
                 {
-                    window.localStorage.setItem('firstTimer', "false");
-					$state.go("map",{"mapid":$scope.mapList[0].mapID});
+					window.localStorage.setItem('firstTimer', "false");
+					if (window.localStorage.getItem('GS_USER_LOGIN_STATUS') == null) {
+						return false;
+					} else {
+						$state.go("map", { "mapid": $scope.mapList[0].mapID });
+					}
+					
 				}
 			}
 			$rootScope.loading = false;
