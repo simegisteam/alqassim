@@ -113,7 +113,7 @@ mapModule.controller('LoginCtrl', [ '$scope', '$http', '$rootScope', '$state', '
 		// window.localStorage.clear();
 		$scope.loginStatus = window.localStorage.getItem("GS_USER_LOGIN_STATUS");
 		$scope.something = window.localStorage.getItem("something")
-		if ($scope.something == "false") {
+		if ($scope.something == "true") {
 			return false;
 		} else
 			if ($scope.loginStatus != undefined && $scope.loginStatus != null && $scope.loginStatus == "true") {
