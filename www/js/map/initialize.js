@@ -98,8 +98,17 @@ mapModule.controller('LoginCtrl', [ '$scope', '$http', '$rootScope', '$state', '
 		$scope.updateUI($rootScope.language);
 	};
 
-	$scope.$on('$viewContentLoaded', function() {
-		
+	$scope.$on('$viewContentLoaded', function () {
+
+		document.addEventListener("backbutton", function (e) {
+			if (confirm("Are you sure u want to exit")) {
+				alert("logout")
+			} else {
+				return false;
+			}
+		});
+	
+
 		$("#languageChangeId").unbind('click');
 		$("#languageChangeId").on("click", function(e) {
 			if($rootScope.language == "en-US") {
@@ -111,9 +120,9 @@ mapModule.controller('LoginCtrl', [ '$scope', '$http', '$rootScope', '$state', '
 
 		// window.localStorage.clear();
 		$scope.loginStatus = window.localStorage.getItem("GS_USER_LOGIN_STATUS");
-		alert("before");
+		
 		if ($scope.loginStatus != undefined && $scope.loginStatus != null && $scope.loginStatus == "true") {
-			alert("after");
+			
 			var userProfile = JSON.parse(window.localStorage.getItem("USER_PROFILE"));
 			$scope.login = {username: "", password: ""};
 			$scope.login.username = userProfile.username;

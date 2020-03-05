@@ -1,20 +1,3 @@
-<script>
-
-	function onLoad() {
-        document.addEventListener("deviceready", onDeviceReady, false)
-		alert("test2")
-	}
-
-	function onDeviceReady() {
-		document.addEventListener("backbutton", onBackKeyUp, false)
-	}
-
-	function onBackKeyUp() {
-		alert("test")
-	}
-
-</script>
-<body onload="onLoad()">
 	<div ng-controller="LoginCtrl" ng-init="init()" id="divLogin" class="bg-custom-1">
 		<div id="header-fixed">
 			<h4 class="heading-title" style="text-align: center;">
@@ -103,5 +86,4 @@
 
 
 	</div>
-</body>
 
