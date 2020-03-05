@@ -226,7 +226,8 @@ mapModule.controller('LoginCtrl', [ '$scope', '$http', '$rootScope', '$state', '
 } ]);
 
 mapModule.controller('IntializeCtrl', function($scope, $rootScope, utilService, $cordovaNetwork, $translate, $state) {
-	$scope.init = function() {
+	$scope.init = function () {
+		alert(window.localStorage.getItem("logoutChecker"))
 		$rootScope.loading = false;
 		$rootScope.toc_map = null;
 		$rootScope.mapObj = null;
