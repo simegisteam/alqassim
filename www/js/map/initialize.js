@@ -99,15 +99,7 @@ mapModule.controller('LoginCtrl', [ '$scope', '$http', '$rootScope', '$state', '
 	};
 
 	$scope.$on('$viewContentLoaded', function () {
-
-		document.addEventListener("backbutton", function (e) {
-			if (confirm("Are you sure u want to exit")) {
-				alert("logout")
-			} else {
-				return false;
-			}
-		});
-	
+		window.localStorage.setItem("something", "false")
 
 		$("#languageChangeId").unbind('click');
 		$("#languageChangeId").on("click", function(e) {
@@ -120,10 +112,13 @@ mapModule.controller('LoginCtrl', [ '$scope', '$http', '$rootScope', '$state', '
 
 		// window.localStorage.clear();
 		$scope.loginStatus = window.localStorage.getItem("GS_USER_LOGIN_STATUS");
-		
-		if ($scope.loginStatus != undefined && $scope.loginStatus != null && $scope.loginStatus == "true") {
-			
-			var userProfile = JSON.parse(window.localStorage.getItem("USER_PROFILE"));
+		$scope.something = window.localStorage.getItem("something")
+		if ($scope.something == "false") {
+			return false;
+		} else
+			if ($scope.loginStatus != undefined && $scope.loginStatus != null && $scope.loginStatus == "true") {
+				var userProfile = JSON.parse(window.localStorage.getItem("USER_PROFILE"));
+				window.localStorage.setItem("something", "false")
 			$scope.login = {username: "", password: ""};
 			$scope.login.username = userProfile.username;
 			$scope.login.password = userProfile.password;
@@ -141,7 +136,7 @@ mapModule.controller('LoginCtrl', [ '$scope', '$http', '$rootScope', '$state', '
 					username: userObj.username,
 					password: userObj.password,
 					deviceToken: ($rootScope.refreshToken != undefined && $rootScope.refreshToken != null && $rootScope.refreshToken.length > 0) ? $rootScope.refreshToken : "NA"
-				}).then(function (result) {
+				}).then(function (result) {logout
 					$rootScope.loading = false;
 					var resultObj = result.data;
 					console.log(resultObj);
@@ -284,6 +279,7 @@ mapModule.controller('IntializeCtrl', function($scope, $rootScope, utilService, 
 							alertBtnText: alert102,
 							alertHandler: function() {
 								$rootScope.isSessionTimeout = false;
+								window.localStorage.setItem("something", "false")
 								utilService.logout();
 							}
 						});
