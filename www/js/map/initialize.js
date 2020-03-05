@@ -125,37 +125,50 @@ mapModule.controller('LoginCtrl', [ '$scope', '$http', '$rootScope', '$state', '
 	$scope.submitLoginDetails = function(userObj) {
 		if (userObj != null && userObj.username.length > 0 && userObj.password.length > 0) {
 			$rootScope.loading = true;
-			$http.post($rootScope.baseUrl + "Account/m_Login", {
-				username: userObj.username,
-				password: userObj.password,
-				deviceToken: ($rootScope.refreshToken != undefined && $rootScope.refreshToken != null && $rootScope.refreshToken.length > 0) ? $rootScope.refreshToken : "NA"
-			}).then(function(result) {
-				$rootScope.loading = false;
-				var resultObj = result.data;
-				console.log(resultObj);
-				if (resultObj.msg.status == "SUCCESS") {
-					var userprofile = {
-						token : resultObj.token,
-						userId : resultObj.userProfile.UserID,
-						username : resultObj.userProfile.UserName,
-						password : userObj.password,
-						GroupID : resultObj.userProfile.GroupID
+			try {
+				$http.post($rootScope.baseUrl + "Account/m_Login", {
+					username: userObj.username,
+					password: userObj.password,
+					deviceToken: ($rootScope.refreshToken != undefined && $rootScope.refreshToken != null && $rootScope.refreshToken.length > 0) ? $rootScope.refreshToken : "NA"
+				}).then(function (result) {
+					$rootScope.loading = false;
+					var resultObj = result.data;
+					console.log(resultObj);
+					if (resultObj.msg.status == "SUCCESS") {
+						var userprofile = {
+							token: resultObj.token,
+							userId: resultObj.userProfile.UserID,
+							username: resultObj.userProfile.UserName,
+							password: userObj.password,
+							GroupID: resultObj.userProfile.GroupID
+						}
+						$rootScope.loginUserName = resultObj.userProfile.UserName;
+						$rootScope.userInfo = userprofile;
+						window.localStorage.setItem("USER_PROFILE", JSON.stringify(userprofile));
+						window.localStorage.setItem("GS_USER_LOGIN_STATUS", "true");
+						window.localStorage.setItem('firstTimer', "true");
+						$state.go('maplist', {});
+					} else {
+						$scope.inValidCredential = true;
+						$scope.warningMsg = resultObj.msg.msgDesc;
+						$timeout(function () {
+							$scope.inValidCredential = false;
+							$scope.warningMsg = "";
+						}, 3000);
 					}
-					$rootScope.loginUserName =resultObj.userProfile.UserName;
-					$rootScope.userInfo = userprofile;
-					window.localStorage.setItem("USER_PROFILE", JSON.stringify(userprofile));
-                    window.localStorage.setItem("GS_USER_LOGIN_STATUS", "true");
-                    window.localStorage.setItem('firstTimer', "true");
-					$state.go('maplist', {});
-				} else {
-					$scope.inValidCredential = true;
-					$scope.warningMsg = resultObj.msg.msgDesc;
-					$timeout(function () {
-						$scope.inValidCredential = false;
-						$scope.warningMsg = "";
-				    }, 3000);
-				}
-			}, function(response) {
+				}, function (response) {
+					$rootScope.loading = false;
+					$translate('ALERT_MESSAGES.OPERATION_FAILED').then(function (alert101) {
+						$translate('MAP.OK').then(function (alert102) {
+							lnv.alert({
+								content: alert101,
+								alertBtnText: alert102
+							});
+						});
+					});
+				});
+			}
+			catch (e) {
 				$rootScope.loading = false;
 				$translate('ALERT_MESSAGES.OPERATION_FAILED').then(function (alert101) {
 					$translate('MAP.OK').then(function (alert102) {
@@ -165,7 +178,8 @@ mapModule.controller('LoginCtrl', [ '$scope', '$http', '$rootScope', '$state', '
 						});
 					});
 				});
-			});
+			}
+			
 		} else {
 			$translate('ERROR_MESSAGES.ENTER_USERNAME_AND_PASSWORD').then(function (alert101) {
 				$translate('MAP.OK').then(function (alert102) {
@@ -339,6 +353,7 @@ mapModule.controller('IntializeCtrl', function($scope, $rootScope, utilService, 
 mapModule.service('utilService', function($state, $rootScope, $translate) {
 	this.logout = function() {
 		window.localStorage.setItem("GS_USER_LOGIN_STATUS", "false");
+		window.localStorage.setItem("USER_PROFILE", null);
 		$state.go('login', {});
 	};
 
