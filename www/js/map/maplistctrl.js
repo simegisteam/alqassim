@@ -35,7 +35,8 @@ mapModule.controller('MapListCtrl',['$scope','mapservice','$rootScope','$transla
 	     jQuery.modal.close();
 	};
 
-	$scope.logout = function(){
+	$scope.logout = function () {
+		window.localStorage.setItem('GS_USER_LOGIN_STATUS', null);
 		utilService.logout();
 	};
 	
