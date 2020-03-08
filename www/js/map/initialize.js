@@ -90,7 +90,7 @@ mapModule.config([ '$stateProvider', '$urlRouterProvider', '$translateProvider',
 mapModule.controller('LoginCtrl', [ '$scope', '$http', '$rootScope', '$state', '$timeout', '$translate', 'mapservice', 'utilService', function($scope, $http, $rootScope, $state, $timeout, $translate, mapservice, utilService) {
 
 	$scope.init = function () {
-		window.localStorage.setItem("logoutChecker", true);
+		alert(window.localStorage.getItem("loginChecker"));
 		$scope.inValidCredential = false;
 		$scope.warningMsg = "";
 		$rootScope.loginUserName = "";
@@ -360,7 +360,6 @@ mapModule.service('utilService', function($state, $rootScope, $translate) {
 	this.logout = function() {
 		window.localStorage.setItem("logoutChecker", false);
 		$state.go('login', {});
-
 	};
 
 	this.changeLocaleTo = function(locale) {
