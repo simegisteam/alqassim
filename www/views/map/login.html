@@ -1,6 +1,5 @@
 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-
-<body onload="onLoad();">
+=
 	<div onload="" ng-controller="LoginCtrl" ng-init="init()" id="divLogin" class="bg-custom-1">
 		<div id="header-fixed">
 			<h4 class="heading-title" style="text-align: center;">
@@ -89,12 +88,17 @@
 
 
 	</div>
-</body>
+
 <script>
 
-	function onLoad() {
-        document.addEventListener("deviceready", onDeviceReady, false);
-    }
+    
+	$(document).ready(function() {
+		$document.onDeviceReady{
+			document.addEventListener("deviceready", onDeviceReady, false);
+		}
+	});
+        
+    
 
     // device APIs are available
     //
@@ -106,6 +110,7 @@
     // Handle the back button
     //
     function onBackKeyDown() {
+		alert("test")
     }
 
 </script>
