@@ -16,7 +16,7 @@ mapModule.controller('MapCtrl', [
 			$scope.init = function () {
 
 				alert(window.localStorage.getItem("logoutChecker"))
-				if (window.localStorage.getItem("logoutChecker") == false){
+				if (window.localStorage.getItem("logoutChecker") == 1){
 					alert("logout now")
 					$state.go('login', {});
 				}	
@@ -1053,7 +1053,7 @@ mapModule.controller('MapCtrl', [
 			};
 
 			$scope.logout = function () {
-				window.localStorage.setItem("logoutChecker", false)
+				window.localStorage.setItem("logoutChecker", 1)
 				utilService.logout()
 			};
 
