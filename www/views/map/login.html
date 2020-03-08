@@ -91,24 +91,9 @@
 
 <script>
 
-    
-	$(document).ready(function() {
-		$document.onDeviceReady{
-			document.addEventListener("deviceready", onDeviceReady, false);
-		}
-	});
-        
-    
 
-    // device APIs are available
-    //
-    function onDeviceReady() {
-        // Register the event listener
-        document.addEventListener("backbutton", onBackKeyDown, false);
-    }
-
-    // Handle the back button
-    //
+     document.addEventListener("backbutton", onBackKeyDown, false);
+    
     function onBackKeyDown() {
 		alert("test")
     }
