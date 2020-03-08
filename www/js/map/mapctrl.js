@@ -14,10 +14,6 @@ mapModule.controller('MapCtrl', [
 		function($scope, $rootScope, mapservice, bookmarkservice, userservice, $filter, $stateParams, $state, $window, $translate,$timeout, utilService) {
 			
 			$scope.init = function () {
-					alert("logout now")
-					$state.go('login', {});
-					
-					alert("ok");
 					$rootScope.mapID = null;
 					$scope.VisibleLayerAfterReOrder = [];
 					$rootScope.layercontrol = null;

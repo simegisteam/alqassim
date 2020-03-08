@@ -90,7 +90,6 @@ mapModule.config([ '$stateProvider', '$urlRouterProvider', '$translateProvider',
 mapModule.controller('LoginCtrl', [ '$scope', '$http', '$rootScope', '$state', '$timeout', '$translate', 'mapservice', 'utilService', function($scope, $http, $rootScope, $state, $timeout, $translate, mapservice, utilService) {
 
 	$scope.init = function () {
-		alert(window.localStorage.getItem("loginChecker"));
 		$scope.inValidCredential = false;
 		$scope.warningMsg = "";
 		$rootScope.loginUserName = "";
