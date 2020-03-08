@@ -14,12 +14,9 @@ mapModule.controller('MapCtrl', [
 		function($scope, $rootScope, mapservice, bookmarkservice, userservice, $filter, $stateParams, $state, $window, $translate,$timeout, utilService) {
 			
 			$scope.init = function () {
-
-				alert(window.localStorage.getItem("logoutChecker"))
-				if (window.localStorage.getItem("logoutChecker") == 1){
 					alert("logout now")
 					$state.go('login', {});
-				}	
+					
 					alert("ok");
 					$rootScope.mapID = null;
 					$scope.VisibleLayerAfterReOrder = [];
@@ -1053,7 +1050,6 @@ mapModule.controller('MapCtrl', [
 			};
 
 			$scope.logout = function () {
-				window.localStorage.setItem("logoutChecker", 1)
 				utilService.logout()
 			};
 

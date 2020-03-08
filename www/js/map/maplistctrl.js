@@ -4,7 +4,6 @@ mapModule.controller('MapListCtrl',['$scope','mapservice','$rootScope','$transla
 
 	$scope.init = function () {
 		
-		console.log(window.localStorage.getItem("logoutChecker"));
 
 		$rootScope.loading = true;
 		mapservice.getMapList($rootScope.userInfo.token).then(function(result) {
@@ -15,11 +14,9 @@ mapModule.controller('MapListCtrl',['$scope','mapservice','$rootScope','$transla
                 if ($scope.mapList != null && $scope.mapList.length == 1 && $scope.loginner == "true")
                 {
 					window.localStorage.setItem('firstTimer', "false");
-					if (window.localStorage.getItem('logoutChecker') == 1) {
-						$state.go('login', {});
-					} else {
+					
 						$state.go("map", { "mapid": $scope.mapList[0].mapID });
-					}
+					
 					
 				}
 			}
@@ -41,7 +38,6 @@ mapModule.controller('MapListCtrl',['$scope','mapservice','$rootScope','$transla
 
 	$scope.logout = function () {
 		window.localStorage.setItem('GS_USER_LOGIN_STATUS', null);
-		window.localStorage.setiItem("logoutChecker" , 1)
 		utilService.logout();
 	};
 	
