@@ -16,7 +16,10 @@ mapModule.controller('MapCtrl', [
 			$scope.init = function () {
 
 
-				if (x == true) {
+				if (window.localStorage.getItem("logoutChecker") == false){
+					alert("logout now")
+					$state.go('login', {});
+				}	
 					alert("ok");
 					$rootScope.mapID = null;
 					$scope.VisibleLayerAfterReOrder = [];
@@ -39,10 +42,7 @@ mapModule.controller('MapCtrl', [
 					$scope.updateUI($rootScope.language);
 
 					$state.go('map.layers');
-				} else {
-					alert("logout now")
-					$state.go('login', {});
-				}
+				
 			};
 			
 			$scope.$on('$viewContentLoaded', function(event) {
