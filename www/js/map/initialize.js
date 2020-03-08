@@ -357,7 +357,7 @@ mapModule.controller('IntializeCtrl', function($scope, $rootScope, utilService, 
 
 mapModule.service('utilService', function($state, $rootScope, $translate) {
 	this.logout = function() {
-		window.localStorage.setItem("logoutChecker", false);
+		window.localStorage.setItem("logoutChecker", 1);
 		$state.go('login', {});
 	};
 
