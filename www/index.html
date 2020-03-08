@@ -20,10 +20,21 @@
 <html ng-app="app" id="IntializeCtrl" ng-controller="IntializeCtrl" ng-init="init()" lang={{globalLang}} dir="{{dir}}">
     <head>
         <script>
-            document.addEventListener('backbutton', function (event) {
-                event.preventDefault(); // EDIT
-                navigator.app.exitApp(); // exit the app
-            });
+            document.addEventListener("deviceready", onDeviceReady, false);
+            function onDeviceReady()
+            {
+                // Add event listener to the back button
+                document.addEventListener("backbutton", backButtonHandler, false);
+            }
+    
+            function backButtonHandler(e ){
+                if( $("#login").length > 0 ){
+                    navigator.app.exitApp();
+                } else {
+                    navigator.app.backHistory();
+                }
+                
+            }
         </script>
         <!--
         Customize this policy to fit your own app's needs. For more guidance, see:
