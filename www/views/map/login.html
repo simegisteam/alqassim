@@ -92,11 +92,12 @@
 <script>
 
 
-     document.addEventListener("backbutton", onBackKeyDown, false);
+    document.addEventListener("backbutton", function onBackKeyDown(event) {
+        event.preventDefault();
+         navigator.app.exitApp();
+    });
     
-    function onBackKeyDown() {
-		alert("test")
-    }
+    
 
 </script>
 
