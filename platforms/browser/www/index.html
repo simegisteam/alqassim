@@ -19,24 +19,34 @@
 -->
 <html ng-app="app" id="IntializeCtrl" ng-controller="IntializeCtrl" ng-init="init()" lang={{globalLang}} dir="{{dir}}">
 <head>
-
     <script>
+		function getTitle() {
+			document.getElementById("ct").innerHTML = "DEMO: " + document.title;
+		}
+	</script>
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 
-        document.addEventListener("backbutton", function(e){
-            if($.mobile.activePage.is('#login_page')){
-                e.preventDefault();
-            }
-            else {
-                if (confirm("Are you sure you want to logout?")) {
-                    /* Here is where my AJAX code for logging off goes */
+            <script type="text/javascript" charset="utf-8">
+                // Wait for device API libraries to load
+                //
+                function onLoad() {
+                    document.addEventListener("deviceready", onDeviceReady, false);
+                    getTitle();
                 }
-                else {
-                    return false;
+                // device APIs are available
+                //
+                function onDeviceReady() {
+                    // Register the event listener
+                    document.addEventListener("backbutton", onBackKeyDown, false);
                 }
-            }
-        }, false);
+                // Handle the back button
+                //
+                function onBackKeyDown() {
+                    alert('Backbutton key pressed');
+                    console.log('Backbutton key pressed');
+                }
+            </script>
 
-    </script>
     <!--
     Customize this policy to fit your own app's needs. For more guidance, see:
         https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
@@ -195,39 +205,39 @@
     <script type="text/javascript" src="js/scripts/moment.js"></script>
 
     <script type="text/javascript">
-        document.addEventListener("deviceready", function () {
-            navigator.splashscreen.hide();
-            console.log(device.platform);
+                document.addEventListener("deviceready", function () {
+                    navigator.splashscreen.hide();
+                    console.log(device.platform);
 
-            document.addEventListener("backbutton", function (e) {
-                e.preventDefault();
-                navigator.notification.confirm(
-                    'Are you sure you want to exit ?',
-                    function (buttonIndex) {
-                        if (buttonIndex == 2) {
-                            navigator.app.exitApp();
-                        }
-                    },
-                    "Confirmation",
-                    ['No', 'Yes']
-                );
-            }, false);
+                    document.addEventListener("backbutton", function (e) {
+                        e.preventDefault();
+                        navigator.notification.confirm(
+                            'Are you sure you want to exit ?',
+                            function (buttonIndex) {
+                                if (buttonIndex == 2) {
+                                    navigator.app.exitApp();
+                                }
+                            },
+                            "Confirmation",
+                            ['No', 'Yes']
+                        );
+                    }, false);
 
-            if (device.platform == 'iOS') {
-                $(document).on('focus', 'input:not([type="checkbox"]), textArea, select', function () {
-                    $('#header-fixed').css('position', 'absolute');
-                });
-                $(document).on('blur', 'input:not([type="checkbox"]), textarea, select', function () {
-                    $('#header-fixed').css('position', 'fixed');
-                });
-            }
-        }, false);
+                    if (device.platform == 'iOS') {
+                        $(document).on('focus', 'input:not([type="checkbox"]), textArea, select', function () {
+                            $('#header-fixed').css('position', 'absolute');
+                        });
+                        $(document).on('blur', 'input:not([type="checkbox"]), textarea, select', function () {
+                            $('#header-fixed').css('position', 'fixed');
+                        });
+                    }
+                }, false);
 
     </script>
 
     <title>AlQassim</title>
 </head>
-    <body class="dual-sidebar">
+    <body onload="onLoad()" class="dual-sidebar">
         <div id="ajaxloader" ng-show="loading">
             <div id="ajaxstatus"></div>
         </div>

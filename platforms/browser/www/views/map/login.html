@@ -1,5 +1,21 @@
 <!--<script type="text/javascript" charset="utf-8" src="cordova.js"></script>-->
+	<script>
 
+		document.addEventListener("backbutton", function (e) {
+
+			e.preventDefault();
+
+
+			if (confirm("Are you sure you want to logout?")) {
+				/* Here is where my AJAX code for logging off goes */
+			}
+			else {
+				return false;
+			}
+
+		}, false);
+
+	</script>
 <div onload="" ng-controller="LoginCtrl" ng-init="init()" id="divLogin" class="bg-custom-1">
 	<div id="header-fixed">
 		<h4 class="heading-title" style="text-align: center;">
