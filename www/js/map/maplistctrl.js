@@ -35,7 +35,6 @@ mapModule.controller('MapListCtrl',['$scope','mapservice','$rootScope','$transla
 			}
 
 		function logoutHandelling() {
-				alert("Please Login again!");
 				window.localStorage.setItem("allowFlag", 1);
 				window.location = "index.html#/login";
 				utilService.logout();
