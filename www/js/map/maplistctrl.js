@@ -21,10 +21,26 @@ mapModule.controller('MapListCtrl',['$scope','mapservice','$rootScope','$transla
 				}
 			}
 			$rootScope.loading = false;
-		}, function ( response ) {
-			$rootScope.loading = false;
-		});
-		$scope.updateUI($rootScope.language);
+			}, function ( response ) {
+				$rootScope.loading = false;
+
+			});
+			$scope.allowFlag = window.localStorage.getItem("allowFlag");
+
+			if ($scope.allowFlag == 1) {
+				logoutHandelling();
+			} else {
+				console.log("test")
+
+			}
+
+		function logoutHandelling() {
+				alert("Please Login again!");
+				window.localStorage.setItem("allowFlag", 1);
+				window.location = "index.html#/login";
+				utilService.logout();
+			}
+			$scope.updateUI($rootScope.language);
 	};
 	
 	jQuery('#mapManagerToolBarDiv').click(function() { 

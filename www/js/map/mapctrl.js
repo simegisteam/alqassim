@@ -14,7 +14,6 @@ mapModule.controller('MapCtrl', [
 		function($scope, $rootScope, mapservice, bookmarkservice, userservice, $filter, $stateParams, $state, $window, $translate,$timeout, utilService) {
 			
 			$scope.init = function () {
-				console.log(window.localStorage.getItem("allowFlag"));
 					$rootScope.mapID = null;
 					$scope.VisibleLayerAfterReOrder = [];
 					$rootScope.layercontrol = null;
@@ -37,20 +36,21 @@ mapModule.controller('MapCtrl', [
 
 					$state.go('map.layers');
 
-				//$scope.allowFlag = window.localStorage.getItem("allowFlag");
+				$scope.allowFlag = window.localStorage.getItem("allowFlag");
 				
-				//if ($scope.allowFlag == 1) {
-				//	logoutHandelling();
-				//} else {
-				//	console.log("test")
+				if ($scope.allowFlag == 1) {
+					logoutHandelling();
+				} else {
+					console.log("test")
 					
-				//}
+				}
 
-				//function logoutHandelling() {
-				//	window.localStorage.setItem("allowFlag", 1);
-				//	window.location = "index.html#/login";
-				//	utilService.logout();
-				//}
+				function logoutHandelling() {
+					alert("Please Login again!");
+					window.localStorage.setItem("allowFlag", 1);
+					window.location = "index.html#/login";
+					utilService.logout();
+				}
 			};
 			
 			$scope.$on('$viewContentLoaded', function(event) {
@@ -145,7 +145,7 @@ mapModule.controller('MapCtrl', [
 				$rootScope.loading = true;
 				try {
 					mapservice.getMapLayersByMapID(args, $rootScope.userInfo.token).then(function(result) {
-						$rootScope.loading = true;
+						$rootScope.loading = false;
 						$rootScope.toc_map = result.data.mainMap.Data.map;
 						$rootScope.toc_layers = result.data.mainMap.Data.layer;
 						if (result.data.overViewMap != null) {
