@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget android-versionCode="20201103" id="com.sime.qassim" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>AlQassim</name>
+    <description>
+    AlQassim
+  </description>
+    <author email="dvpt@dsi.co.ae" href="http://spaceimagingme.com">
+    Space Imaging Middle East
+  </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <access origin="http://fe.alqassim.gov.sa/gis/*" />
+    <access origin="https://fe.alqassim.gov.sa/gis/*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <allow-intent href="maps:*" />
+    <allow-navigation href="*" />
+    <allow-navigation href="http://*/*" />
+    <allow-navigation href="https://*/*" />
+    <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="SplashScreenDelay" value="5000" />
+    <preference name="orientation" value="portrait" />
+    <icon src="icon.png" />
+    <splash src="splash.png" />
+    <preference name="windows-target-version" value="10.0" />
+    <preference name="android-minSdkVersion" value="19" />
+    <preference name="phonegap-version" value="cli-9.0.0" />
+    <preference name="android-targetSdkVersion" value="28" />
+    <vs:toolsetVersion xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps">6.3.1</vs:toolsetVersion>
+</widget>
